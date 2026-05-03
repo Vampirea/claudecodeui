@@ -42,7 +42,14 @@
     "prepublishOnly": "npm run build",
     "postinstall": "node scripts/fix-node-pty.js",
     "prepare": "husky",
-    "update:platform": "./update-platform.sh"
+    "update:platform": "./update-platform.sh",
+    "dev:start": "./scripts/cloudcli-dev.sh start dev",
+    "dev:stop": "./scripts/cloudcli-dev.sh stop dev",
+    "dev:restart": "./scripts/cloudcli-dev.sh restart dev",
+    "dev:status": "./scripts/cloudcli-dev.sh status",
+    "dev:logs": "./scripts/cloudcli-dev.sh logs dev",
+    "prod:start": "./scripts/cloudcli-dev.sh start prod",
+    "prod:stop": "./scripts/cloudcli-dev.sh stop prod"
   },
   "keywords": [
     "claude code",
