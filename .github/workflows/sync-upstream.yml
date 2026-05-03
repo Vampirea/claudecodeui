@@ -1,0 +1,42 @@
+name: Sync upstream main
+
+on:
+  schedule:
+    # Runs every Saturday at 10:00 Asia/Shanghai (02:00 UTC).
+    - cron: '0 2 * * 6'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  UPSTREAM_REPOSITORY: siteboon/claudecodeui
+  UPSTREAM_BRANCH: main
+  TARGET_BRANCH: main
+
+jobs:
+  sync:
+    name: Fast-forward fork main from upstream
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout fork target branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/${UPSTREAM_REPOSITORY}.git
+          git fetch upstream ${UPSTREAM_BRANCH}
+
+      - name: Fast-forward target branch
+        run: |
+          git checkout ${TARGET_BRANCH}
+          git merge --ff-only upstream/${UPSTREAM_BRANCH}
+
+      - name: Push updated target branch
+        run: |
+          git push origin ${TARGET_BRANCH}
