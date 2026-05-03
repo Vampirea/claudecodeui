@@ -49,7 +49,8 @@
     "dev:status": "./scripts/cloudcli-dev.sh status",
     "dev:logs": "./scripts/cloudcli-dev.sh logs dev",
     "prod:start": "./scripts/cloudcli-dev.sh start prod",
-    "prod:stop": "./scripts/cloudcli-dev.sh stop prod"
+    "prod:stop": "./scripts/cloudcli-dev.sh stop prod",
+    "sync:custom": "./scripts/sync-custom-branch.sh"
   },
   "keywords": [
     "claude code",
